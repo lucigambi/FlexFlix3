@@ -1,15 +1,66 @@
 # FlexFlix3
 
-Base de la landing institucional de FlexFlix3.
+Landing institucional estática, desarrollada en paralelo a [FlexFlix2](https://flex-flix2.vercel.app/) a partir del feedback de Eugenia. La versión anterior no fue modificada.
 
-## Desarrollo local
+## Desarrollo
 
-Abrir `index.html` en el navegador. Esta base es un sitio estático y no requiere dependencias ni compilación.
+```powershell
+python -m http.server 4173 --bind 127.0.0.1
+```
+
+Abrir http://127.0.0.1:4173. No requiere instalación de dependencias ni compilación.
+
+## Estructura
+
+- `index.html`: ocho secciones y siete conectores, contenido y formularios.
+- `styles.css`: paleta azul noche/coral/lavanda, Manrope y DM Sans, diseño adaptable y movimiento reducido.
+- `data.js`: siete capas y método PACCC, derivados del código de FlexFlix2.
+- `script.js`: capas, pestañas accesibles, menú móvil, conversaciones, casos y carga de videos.
+- `media.json`: video de presentación y hasta cuatro testimonios aprobados.
+- `assets/`: logos y reconocimientos recuperados del proyecto original.
+
+## Videos
+
+Mientras no haya material aprobado, la web muestra «Próximamente». Para habilitarlo, editar `media.json`:
+
+```json
+{
+  "intro": { "url": "https://www.youtube.com/watch?v=ID_REAL", "poster": "assets/presentacion.jpg" },
+  "testimonials": [
+    { "name": "Nombre aprobado", "role": "Docente · Institución", "url": "https://www.youtube.com/watch?v=ID_REAL", "poster": "assets/testimonio.jpg" }
+  ]
+}
+```
+
+Los videos abren el enlace externo y no cargan reproductores ni cookies de terceros al visitar la landing. Los posters son opcionales. No publicar identidades, testimonios o fotografías ficticias. Las escenas fotográficas del sitio previo no se reutilizan: PACCC incluye un esquema didáctico identificado como ilustrativo.
+
+## Contacto
+
+El formulario valida perfil, nombre y email, y prepara un correo dirigido a `contacto@flexflix.ai`. La persona revisa y envía desde su aplicación de correo. **No hay envío automático ni registro en base de datos.** Para habilitarlo falta definir el CRM o servicio de recepción y su aviso de privacidad; no incluir claves en código del navegador.
+
+## Contenido pendiente
+
+- Video introductorio, máximo cuatro testimonios y fotografías reales aprobadas.
+- Traducciones EN/PT: el selector compacto informa que todavía no están disponibles.
+- Perfiles oficiales adicionales de redes: solo LinkedIn fue verificado.
+- Adjuntos del mail y posibles cambios locales que no estén en el repositorio FlexFlix2.
+- Textos legales definitivos y conexión a la base de consultas.
+
+La referencia al reconocimiento WSA enlaza a [PAD 2005](https://wsa-global.org/winner/digital-literacy-program-pad/) y explica su [contexto en la ONU](https://wsa-global.org/un-context/), sin atribuir una certificación de la ONU al producto actual.
+
+## Verificación
+
+```powershell
+python scripts/check_site.py
+node --check script.js
+node --check data.js
+```
+
+Además, revisar en navegador: menú móvil, las siete capas, pestañas PACCC con teclado, perfiles y modal de casos, formulario y ausencia de desbordamiento horizontal.
 
 ## Publicación
 
-- Repositorio: https://github.com/lucigambi/FlexFlix3
-- Rama principal: `main`.
-- Hosting: Vercel, conectado al repositorio para desplegar los cambios de GitHub.
-
-La página inicial es temporal y se reemplazará por la landing institucional.
+- GitHub: https://github.com/lucigambi/FlexFlix3
+- Producción: https://flexflix3.vercel.app
+- Vercel: `lucigambis-projects/flexflix3`, rama `main`, framework Other, directorio raíz `.`.
+- `.reference/` es una copia local ignorada; `.vercelignore` evita publicarla.
