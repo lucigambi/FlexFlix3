@@ -130,31 +130,8 @@ const awards = [
       featured: false,
     },
   ];
-$('#awards-track').innerHTML = awards.map(award => `<div class="award" role="listitem"><div class="award-logo"><img src="${award.src}" alt="" loading="lazy"></div><span class="award-institution">${escapeHTML(award.institution)}</span><h3>${escapeHTML(award.name)}</h3><p>${escapeHTML(award.description)}</p></div>`).join('');
-const awardsRail = $('.marquee');
-const awardsSection = $('#reconocimientos');
-let awardsVisible = false;
-function advanceAward(direction) {
-  const cards = $$('.award', awardsRail);
-  const step = cards[1].offsetLeft - cards[0].offsetLeft;
-  const end = awardsRail.scrollWidth - awardsRail.clientWidth;
-  let target = Math.round(awardsRail.scrollLeft / step) * step + direction * step;
-  if (direction > 0 && awardsRail.scrollLeft >= end - 2) target = 0;
-  if (direction < 0 && awardsRail.scrollLeft <= 2) target = end;
-  awardsRail.scrollTo({left: Math.max(0, Math.min(end, target)), behavior: 'smooth'});
-}
-$('#awards-prev').addEventListener('click', () => advanceAward(-1));
-$('#awards-next').addEventListener('click', () => advanceAward(1));
-awardsRail.addEventListener('keydown', event => {
-  if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
-    event.preventDefault();
-    advanceAward(event.key === 'ArrowRight' ? 1 : -1);
-  }
-});
-new IntersectionObserver(entries => { awardsVisible = entries[0].isIntersecting; }, {threshold:.15}).observe(awardsSection);
-setInterval(() => {
-  if (awardsVisible && !document.hidden) advanceAward(1);
-}, 5000);
+// Two identical sequences make the continuous loop seamless.
+$('#awards-track').innerHTML = [false, true].map(duplicate => awards.map(award => `<div class="award" ${duplicate ? 'aria-hidden="true"' : 'role="listitem"'}><div class="award-logo"><img src="${award.src}" alt="" loading="eager"></div><span class="award-institution">${escapeHTML(award.institution)}</span><h3>${escapeHTML(award.name)}</h3><p>${escapeHTML(award.description)}</p></div>`).join('')).join('');
 
 const nav = $('#navigation');
 const menu = $('.menu-toggle');
