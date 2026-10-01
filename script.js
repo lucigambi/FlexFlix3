@@ -1,6 +1,6 @@
 'use strict';
 
-// All editorial data and screenshots come from the original FlexFlix2 project.
+// Preserve the reference sections and labels requested in Eugenia’s feedback.
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 const escapeHTML = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
@@ -12,17 +12,10 @@ $('#layer-list').innerHTML = [...LAYERS].reverse().map(layer => {
   return `<details class="layer"><summary><span class="layer-num">${String(layer.n).padStart(2,'0')}</span><span class="layer-icon" aria-hidden="true">${icons[layer.n - 1]}</span><span class="layer-name">${escapeHTML(name)}${acronym ? `<small>${escapeHTML(acronym.replace(')',''))}</small>` : ''}</span><span class="layer-tag">${escapeHTML(item.tag)}</span><span class="layer-plus" aria-hidden="true">+</span></summary><div class="layer-drawer"><div><h3>${escapeHTML(item.role)}</h3><p>${escapeHTML(item.desc)}</p></div><div class="layer-features">${layer.feats.map(feature => `<div><strong>${escapeHTML(feature.es[0])}</strong><p>${escapeHTML(feature.es[1])}</p></div>`).join('')}</div>${layer.note ? `<div class="layer-note"><strong>${escapeHTML(layer.note.es.title)}.</strong> ${escapeHTML(layer.note.es.body)}</div>` : ''}</div></details>`;
 }).join('');
 
-// Explain the full original method. The visual is an explicitly illustrative
-// lesson walkthrough, not a claim to be an actual product screenshot.
-const phaseVisuals = [
-  {title:'Una clase con propósito', tag:'DISEÑO DOCENTE', rows:[['Tema curricular','El agua y sus transformaciones'],['Pregunta inicial','¿A dónde va el agua cuando se evapora?'],['Recorrido','Comprender, conversar y crear']],foot:'El docente define el contexto, las preguntas y los tiempos.'},
-  {title:'Primero, comprender',tag:'BASE COMPARTIDA',rows:[['Exploramos','Observamos los estados del agua.'],['Conectamos','Relacionamos el tema con situaciones cotidianas.'],['Preguntamos','Anotamos lo que todavía queremos entender.']],foot:'Una base curricular común antes de conversar con IA.'},
-  {title:'Una pregunta abre otra',tag:'DIÁLOGO CON CRITERIO',rows:[['Estudiante','Creo que el agua desaparece.'],['Una nueva pregunta','¿Qué cambia cuando el vapor se enfría?'],['Pensamiento propio','Busco un ejemplo para explicar mi idea.']],foot:'La conversación invita a justificar y profundizar.'},
-  {title:'De la idea a la creación',tag:'PRODUCCIÓN PROPIA',rows:[['La consigna','Explicá el ciclo del agua con tus palabras.'],['El formato','Una historia, un video o una infografía.'],['El criterio','Revisá que tu producción explique lo aprendido.']],foot:'La IA acompaña. La intención y las decisiones son humanas.'},
-  {title:'Compartir para aprender',tag:'DEVOLUCIÓN DOCENTE',rows:[['Producción','Presento mi trabajo al curso.'],['Explicación','Cuento cómo lo hice y por qué.'],['Retroalimentación','Reviso la devolución y mejoro mi trabajo.']],foot:'La evidencia cierra el ciclo y abre nuevos aprendizajes.'}
-];
+// Visual summary of the five original PACCC stages.
+const phaseLabels = ['Adaptá FlexClass a tu aula', 'Contenido curricular propio', 'Preguntas antes que respuestas', 'De consumir a producir', 'Cierra el ciclo pedagógico'];
 const productFigure = $('.product-shot');
-productFigure.innerHTML = '<div class="window-bar" aria-hidden="true"><i></i><i></i><i></i><span>Una clase, paso a paso</span></div><div id="lesson-preview" class="lesson-preview"></div><figcaption>Esquema ilustrativo del método PACCC™.</figcaption>';
+productFigure.innerHTML = '<div class="window-bar" aria-hidden="true"><i></i><i></i><i></i><span>El protocolo cognitivo · PACCC™</span></div><div id="lesson-preview" class="lesson-preview"></div><figcaption>Personaliza · Aprende · Conversa · Crea · Comparte</figcaption>';
 phases[0].text = 'Elegí preguntas del reservorio curricular o sumá las tuyas. Definí las herramientas de IA, los tiempos y el recorrido que necesita tu aula.';
 phases[1].text = 'El tema se presenta con una narrativa alineada al currículo de tu jurisdicción. Esa base común permite comprender antes de conversar y crear.';
 phases[2].text = 'FlexGPT acompaña con preguntas centradas en el tema de la clase. El estudiante dialoga, justifica y profundiza a partir de preguntas curadas. La IA abre la conversación.';
@@ -36,8 +29,7 @@ function selectPhase(index, focus = false) {
   $('#phase-number').textContent = `${String(index + 1).padStart(2,'0')} / EL MÉTODO EN ACCIÓN`;
   $('#phase-title').textContent = phase.title;
   $('#phase-description').textContent = phase.text;
-  const visual = phaseVisuals[index];
-  $('#lesson-preview').innerHTML = `<span class="lesson-tag">${visual.tag}</span><h4>${visual.title}</h4><div class="lesson-rows">${visual.rows.map(([label,text], i) => `<div><span>${String(i + 1).padStart(2,'0')}</span><p><strong>${label}</strong>${text}</p></div>`).join('')}</div><p class="lesson-footer">${visual.foot}</p>`;
+  $('#lesson-preview').innerHTML = `<span class="lesson-tag">PACCC™ · EL PROTOCOLO COGNITIVO</span><h4>${phase.title}</h4><div class="lesson-rows">${phases.map((item, i) => `<div class="${i === index ? 'current-phase' : ''}"><span>${String(i+1).padStart(2,'0')}</span><p><strong>${item.title}</strong>${phaseLabels[i]}</p></div>`).join('')}</div>`;
   $('#creation-types').hidden = !phase.crea;
   if (focus) $(`#phase-${index}`).focus();
 }
@@ -114,14 +106,9 @@ function startContact(profile) {
 }
 $$('[data-profile]').forEach(button => button.addEventListener('click', () => startContact(button.dataset.profile)));
 $$('[data-dialog-profile]').forEach(button => button.addEventListener('click', () => startContact(button.dataset.dialogProfile)));
-const caseCopy = {
-  'Mendoza': 'Arquitectura sistémica, múltiples programas y despliegue provincial, con foco en educación secundaria. La propuesta conecta la estrategia educativa con el trabajo del aula y el desarrollo de capacidades observables.',
-  'Entre Ríos': 'Aprendizajes fundamentales, IA curricular e identidad territorial, con foco en educación primaria. Una propuesta que integra el contexto de la jurisdicción y la conducción docente.',
-  'Neuquén': 'Trayectoria educativa, Operador IA y capacidades productivas. Una implementación pública que vincula aprendizaje, criterio propio y uso de inteligencia artificial con propósito.'
-};
 $$('[data-case]').forEach(button => button.addEventListener('click', () => {
   $('#case-title').textContent = button.dataset.case;
-  $('#case-description').textContent = caseCopy[button.dataset.case];
+  $('#case-description').textContent = button.closest('.province-body').querySelector('p:not(.eyebrow)').textContent;
   openDialog(caseDialog);
 }));
 $('#case-contact').addEventListener('click', () => {

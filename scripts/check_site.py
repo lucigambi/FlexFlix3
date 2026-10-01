@@ -11,12 +11,15 @@ class Page(HTMLParser):
         self.ids = []
         self.refs = []
         self.sections = []
+        self.flow = []
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
         if 'id' in attrs:
             self.ids.append(attrs['id'])
         if tag == 'section' and 'id' in attrs:
             self.sections.append(attrs['id'])
+        if tag in ('section', 'aside') and 'id' in attrs:
+            self.flow.append((attrs['id'], attrs.get('data-source-reference')))
         for key in ('href', 'src'):
             if key in attrs:
                 self.refs.append(attrs[key])
@@ -25,6 +28,16 @@ page = Page()
 page.feed((ROOT / 'index.html').read_text(encoding='utf-8'))
 assert len(page.ids) == len(set(page.ids)), 'Duplicate IDs'
 assert page.sections == ['arquitectura','metodologia','modelos','gobiernos','audiencias','evidencia','impacto','contacto']
+# The original numbers identify source sections, not their new order.
+assert page.flow == [
+    ('arquitectura',None), ('reconocimientos','24'),
+    ('metodologia','09'), ('problema','03'),
+    ('modelos','21'), ('principio','04'),
+    ('gobiernos','18'), ('conduccion-humana','12'),
+    ('audiencias','02'), ('flexgpt','11'),
+    ('evidencia',None), ('arquitectura-global','14'),
+    ('impacto','15'), ('trayectoria','22'), ('contacto','25'),
+], 'The sequence must match Eugenia\'s feedback, including every connector.'
 for ref in page.refs:
     if ref.startswith('#'):
         assert ref[1:] in page.ids, f'Broken anchor: {ref}'
