@@ -31,7 +31,7 @@ assert page.sections == ['arquitectura','metodologia','modelos','gobiernos','aud
 # The original numbers identify source sections, not their new order.
 assert page.flow == [
     ('arquitectura',None), ('reconocimientos','24'),
-    ('metodologia','09'), ('problema','03'),
+    ('problema','03'), ('metodologia','09'),
     ('modelos','21'), ('principio','04'),
     ('gobiernos','18'), ('conduccion-humana','12'),
     ('audiencias','02'), ('flexgpt','11'),
