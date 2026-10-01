@@ -1,5 +1,35 @@
 'use strict';
 
+// Adapted from Entre Rios Aprende's PixelTexture: fixed mosaic cells,
+// a blue-only palette and opacity animation (no scaling or movement).
+function HeroPixelTexture(container) {
+  if (!container) return;
+  const colors = ['#395685', '#456497', '#5275ac', '#6989ba'];
+  const fragment = document.createDocumentFragment();
+  ['left', 'right'].forEach((side, sideIndex) => {
+    const panel = document.createElement('div');
+    panel.className = `hero-mosaic-side mosaic-${side}`;
+    for (let row = 0; row < 38; row++) {
+      for (let column = 0; column < 8; column++) {
+        const seed = (row * 37 + column * 19 + sideIndex * 43) % 101;
+        if (seed > 54) continue;
+        const cell = document.createElement('span');
+        cell.className = 'hero-mosaic-cell';
+        cell.style.top = `${row * 32}px`;
+        cell.style[side] = `${column * 32}px`;
+        cell.style.backgroundColor = colors[seed % colors.length];
+        cell.style.setProperty('--pixel-opacity', (0.17 + seed / 300).toFixed(3));
+        cell.style.setProperty('--pixel-duration', `${5 + seed % 5}s`);
+        cell.style.setProperty('--pixel-delay', `${-seed / 10}s`);
+        panel.appendChild(cell);
+      }
+    }
+    fragment.appendChild(panel);
+  });
+  container.appendChild(fragment);
+}
+HeroPixelTexture(document.querySelector('.hero-mosaic'));
+
 // Preserve the reference sections and labels requested in Eugenia’s feedback.
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];

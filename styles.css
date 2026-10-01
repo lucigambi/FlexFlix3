@@ -221,6 +221,19 @@ body .recognition-label .eyebrow{margin-bottom:0}
 @media(max-width:700px){.global-source-image{grid-column:1;grid-row:auto;height:120px;max-width:320px}.global-local .global-pair{grid-column:1}.principle-source-image{width:100px;height:90px;margin-left:16px}.implementation-source-image{width:110px;height:90px;margin-left:16px}}
 
 /* The same breathing room at every boundary, independent of section type. */
+.architecture{isolation:isolate}
+.architecture>.hero-grid,.architecture>.intro-story,.architecture>.layers-block{position:relative;z-index:1}
+.hero-mosaic{position:absolute;inset:0 0 auto;height:min(1240px,100%);z-index:0;pointer-events:none;overflow:hidden;mask-image:linear-gradient(to bottom,transparent,#000 10%,#000 78%,transparent)}
+.hero-mosaic-side{position:absolute;top:0;bottom:0;width:clamp(28px,calc((100% - 1080px)/2),260px);overflow:hidden}
+.mosaic-left{left:16px;mask-image:linear-gradient(to right,#000 35%,transparent)}
+.mosaic-right{right:16px;mask-image:linear-gradient(to left,#000 35%,transparent)}
+.hero-mosaic-cell{position:absolute;width:16px;height:16px;opacity:0;animation:hero-mosaic-opacity var(--pixel-duration) ease-in-out var(--pixel-delay) infinite}
+@keyframes hero-mosaic-opacity{0%,100%{opacity:0}45%,55%{opacity:var(--pixel-opacity)}}
+.architecture .intro-visual{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:24px}
+.intro-visual .video-brand{display:block;width:300px;height:76px;max-width:100%;flex:none}
+.video-brand svg{width:100%;height:100%;display:block}
+.intro-visual:has(.intro-video-link) .video-brand{display:none}
+@media(max-width:700px){.mosaic-left{left:3px}.mosaic-right{right:3px}.intro-visual .video-brand{width:280px;height:76px}.architecture .intro-visual{gap:14px}}
 /* Reference hero: floating navigation, centered copy and video, blue light only. */
 .ambient{display:none}
 .header{width:min(1340px,calc(100% - 48px));height:70px;top:18px;margin:18px auto 0;padding:0 22px;border:1px solid #a9baff20;border-radius:40px;background:#070d22e8;box-shadow:0 12px 45px #0003;gap:24px}
