@@ -12,27 +12,24 @@ $('#layer-list').innerHTML = [...LAYERS].reverse().map(layer => {
   return `<details class="layer"><summary><span class="layer-num">${String(layer.n).padStart(2,'0')}</span><span class="layer-icon" aria-hidden="true">${icons[layer.n - 1]}</span><span class="layer-name">${escapeHTML(name)}${acronym ? `<small>${escapeHTML(acronym.replace(')',''))}</small>` : ''}</span><span class="layer-tag">${escapeHTML(item.tag)}</span><span class="layer-plus" aria-hidden="true">+</span></summary><div class="layer-drawer"><div><h3>${escapeHTML(item.role)}</h3><p>${escapeHTML(item.desc)}</p></div><div class="layer-features">${layer.feats.map(feature => `<div><strong>${escapeHTML(feature.es[0])}</strong><p>${escapeHTML(feature.es[1])}</p></div>`).join('')}</div>${layer.note ? `<div class="layer-note"><strong>${escapeHTML(layer.note.es.title)}.</strong> ${escapeHTML(layer.note.es.body)}</div>` : ''}</div></details>`;
 }).join('');
 
-// Original PACCC content and photography from FlexFlix2.
+// FlexFlix3 layout with the original FlexFlix2 content and images.
+$('.phase-tabs').innerHTML = phases.map((phase, index) => `<button class="phase-tab" id="phase-${index}" role="tab" aria-controls="phase-panel" aria-selected="${index === 0}" tabindex="${index === 0 ? 0 : -1}"><span>${String(index + 1).padStart(2,'0')}</span>${phase.title}</button>`).join('');
 function selectPhase(index, focus = false) {
   const phase = phases[index];
-  $$('#metodologia .phase').forEach((tab, i) => {
-    tab.classList.toggle('active', i === index);
+  $$('.phase-tab').forEach((tab, i) => {
     tab.setAttribute('aria-selected', i === index);
     tab.tabIndex = i === index ? 0 : -1;
   });
   $('#phase-panel').setAttribute('aria-labelledby', `phase-${index}`);
-  $('#phase-kicker').textContent = phase.kicker;
+  $('#phase-number').textContent = phase.kicker;
   $('#phase-title').textContent = phase.title;
-  $('#phase-text').textContent = phase.text;
+  $('#phase-description').textContent = phase.text;
   $('#phase-img').src = phase.img;
   $('#phase-img').alt = phase.alt;
-  $('#phase-crea').hidden = !phase.crea;
+  $('#creation-types').hidden = !phase.crea;
   if (focus) $(`#phase-${index}`).focus();
 }
-$$('#metodologia .phase').forEach((tab, index) => {
-  tab.id = `phase-${index}`;
-  tab.setAttribute('role', 'tab');
-  tab.setAttribute('aria-controls', 'phase-panel');
+$$('.phase-tab').forEach((tab, index) => {
   tab.addEventListener('click', () => selectPhase(index));
   tab.addEventListener('keydown', event => {
     const next = {ArrowRight: (index + 1) % 5, ArrowLeft: (index + 4) % 5, Home: 0, End: 4}[event.key];
