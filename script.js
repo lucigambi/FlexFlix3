@@ -187,7 +187,7 @@ $$('[data-profile]').forEach(button => button.addEventListener('click', () => st
 $$('[data-dialog-profile]').forEach(button => button.addEventListener('click', () => startContact(button.dataset.dialogProfile)));
 $$('[data-case]').forEach(button => button.addEventListener('click', () => {
   $('#case-title').textContent = button.dataset.case;
-  $('#case-description').textContent = button.closest('.province-body').querySelector('p:not(.eyebrow)').textContent;
+  $('#case-description').textContent = button.closest('.province-body').querySelector('p:not(.eyebrow):not(.province-program)').textContent;
   openDialog(caseDialog);
 }));
 $('#case-contact').addEventListener('click', () => {

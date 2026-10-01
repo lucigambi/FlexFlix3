@@ -6,7 +6,7 @@ Landing institucional estática, desarrollada en paralelo a [FlexFlix2](https://
 
 Conservar los títulos y contenidos originales donde el feedback dice «completo». Reformular solo Metodología (simplificar sin quitar información), título/subtítulo de Audiencias y las fusiones o resúmenes indicados. No reemplazar los conectores por nuevos conceptos o eslóganes.
 
-Orden: Arquitectura; #24 Reconocimientos; Metodología #09; #03 El problema; Modelos #21; #04 El principio; Gobiernos #18; #12 Conducción humana; Audiencias #02; #11 FlexGPT; Evidencia con #16 IDCA; #14 Arquitectura global; Impacto #15; #22 Trayectoria; Contacto #25 con Implementación #13. Los números visibles corresponden a la referencia original, no a una nueva numeración.
+Orden: Arquitectura; #24 Reconocimientos; Metodología #09; #03 El problema; Modelos #21; #04 El principio; Gobiernos #18; #12 Conducción humana; Audiencias #02; #11 FlexGPT; Evidencia con #16 IDCA; #14 Arquitectura global; Impacto #15; #22 Trayectoria; Contacto #25 con Implementación #13. Los números identifican las secciones de la referencia original; no se muestran en la web.
 
 ## Desarrollo
 
