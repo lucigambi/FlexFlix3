@@ -1,4 +1,41 @@
 {
   "intro": null,
-  "testimonials": []
+  "testimonials": [
+    {
+      "name": "Escuela Bavio",
+      "role": "Docente",
+      "province": "Entre Ríos",
+      "description": "Así se vive una clase con IA en el aula.",
+      "url": "assets/testimonials/entre-rios-bavio.mp4",
+      "type": "video",
+      "posterTime": 15
+    },
+    {
+      "name": "Estudiantes",
+      "role": "Estudiantes",
+      "province": "Entre Ríos",
+      "description": "Explorando contenidos de Entre Ríos con IA.",
+      "url": "assets/testimonials/entre-rios-estudiantes.mp4",
+      "type": "video",
+      "posterTime": 5
+    },
+    {
+      "name": "Neidan",
+      "role": "Docente de programación, CIET de Godoy Cruz",
+      "province": "Mendoza",
+      "description": "\"Nos ayuda a enfocar las clases de un enfoque más dinámico y adaptado a cada estudiante.\"",
+      "url": "assets/testimonials/mendoza-docente-programacion.mp4",
+      "poster": "assets/testimonials/mendoza-docente-programacion.webp",
+      "type": "video"
+    },
+    {
+      "name": "Ciro y Giuliano",
+      "role": "Estudiantes de la escuela CIET",
+      "province": "Mendoza",
+      "description": "\"Fue muy innovadora y me gustó mucho, ya que es un programa nuevo. Espero que esto se mantenga para los demás.\"",
+      "url": "assets/testimonials/mendoza-estudiantes-ciet-1.mp4",
+      "poster": "assets/testimonials/mendoza-estudiantes-ciet-1.webp",
+      "type": "video"
+    }
+  ]
 }

@@ -223,7 +223,7 @@ function safeMediaURL(value) {
   if (!value) return null;
   try { const url = new URL(value, location.href); return url.protocol === 'https:' || (url.origin === location.origin && url.pathname.startsWith('/assets/')) ? url.href : null; } catch { return null; }
 }
-fetch('media.json').then(response => response.ok ? response.json() : null).then(media => {
+fetch('media.json?v=province-testimonials-2').then(response => response.ok ? response.json() : null).then(media => {
   if (!media) return;
   const intro = safeMediaURL(media.intro?.url);
   if (intro) {
@@ -239,6 +239,30 @@ fetch('media.json').then(response => response.ok ? response.json() : null).then(
   if (testimonials.length) {
     const grid = document.createElement('div'); grid.className = 'testimonial-grid';
     testimonials.forEach(item => {
+      if (item.type === 'video') {
+        const card = document.createElement('article');
+        card.className = 'testimonial testimonial-video-card';
+        const video = document.createElement('video');
+        video.src = safeMediaURL(item.url);
+        video.controls = true; video.playsInline = true; video.preload = 'metadata';
+        video.setAttribute('aria-label', `Testimonio de ${item.name} · ${item.province}`);
+        const poster = safeMediaURL(item.poster);
+        if (poster) video.poster = poster;
+        else if (item.posterTime) video.addEventListener('loadedmetadata', () => {
+          if (video.duration > item.posterTime) video.currentTime = item.posterTime;
+        }, {once:true});
+        if (!poster && item.posterTime) video.addEventListener('play', () => {
+          video.currentTime = 0;
+        }, {once:true});
+        video.addEventListener('play', () => {
+          grid.querySelectorAll('video').forEach(other => { if (other !== video) other.pause(); });
+        });
+        card.append(video);
+        const copy = document.createElement('div'); copy.className = 'testimonial-copy';
+        copy.innerHTML = `<span class="testimonial-province">${escapeHTML(item.province)}</span><h3>${escapeHTML(item.name)}</h3><p class="testimonial-role">${escapeHTML(item.role)}</p><p class="testimonial-description">${escapeHTML(item.description)}</p>`;
+        card.append(copy); grid.append(card);
+        return;
+      }
       const link = document.createElement('a'); link.className = 'testimonial'; link.href = safeMediaURL(item.url); link.target = '_blank'; link.rel = 'noopener noreferrer';
       const poster = safeMediaURL(item.poster);
       link.innerHTML = `<div class="testimonial-image">${poster ? `<img src="${escapeHTML(poster)}" alt="" loading="lazy">` : ''}<span aria-hidden="true">▷</span></div><h3>${escapeHTML(item.name)}</h3><p>${escapeHTML(item.role || '')}</p><span class="inline-link">Ver testimonio ↗</span>`;
