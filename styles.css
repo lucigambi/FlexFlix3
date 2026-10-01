@@ -219,3 +219,15 @@ body .recognition-label .eyebrow{margin-bottom:0}
 .global-local .global-pair{grid-column:1/-1}
 .implementation-source-image{float:right;width:180px;height:120px;object-fit:cover;border-radius:12px;margin:0 0 20px 24px}
 @media(max-width:700px){.global-source-image{grid-column:1;grid-row:auto;height:120px;max-width:320px}.global-local .global-pair{grid-column:1}.principle-source-image{width:100px;height:90px;margin-left:16px}.implementation-source-image{width:110px;height:90px;margin-left:16px}}
+
+/* The same breathing room at every boundary, independent of section type. */
+.section-surface[data-surface]{--surface-fade:280px;padding-block:240px 0}
+.section-surface>:is(.section,.connector){padding-block:40px;margin-block:0}
+.section-surface[data-surface="arquitectura"]{padding-top:0}
+.section-surface[data-surface="arquitectura"]>.section{padding-top:65px}
+@media(max-width:700px){
+  .section-surface[data-surface]{--surface-fade:200px;padding-block:176px 0}
+  .section-surface>:is(.section,.connector){padding-block:24px}
+  .section-surface[data-surface="arquitectura"]{padding-top:0}
+  .section-surface[data-surface="arquitectura"]>.section{padding-top:40px}
+}
