@@ -343,3 +343,9 @@ body .recognition-label .eyebrow{margin-bottom:0}
 .global-closing strong{color:#eef3ff}
 @media(max-width:960px){.global-local{grid-template-columns:1fr;gap:24px}.global-local>.global-source-image{grid-column:1;grid-row:auto;height:170px}.global-local>.global-pair{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:18px}.global-pair>div{padding:18px}}
 @media(max-width:700px){.global-local>.global-pair{grid-template-columns:1fr;gap:16px;padding:16px}.global-local>.global-source-image{height:140px}.global-local>.global-closing{padding:16px 18px}}
+
+/* Shared typography by hierarchy, independent of section layout. */
+:root{--section-title-size:clamp(1.875rem,3.2vw,2.8125rem);--subheading-size:1.375rem}
+body main .section-surface .section-title{font-family:var(--heading);font-size:var(--section-title-size);font-weight:800;line-height:1.18;letter-spacing:-.045em}
+body main .section-surface h3,body main .global-pair strong{font-family:var(--heading);font-size:var(--subheading-size);font-weight:800;line-height:1.3;letter-spacing:-.03em}
+@media(max-width:700px){:root{--section-title-size:1.875rem;--subheading-size:1.25rem}}
