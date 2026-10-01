@@ -12,28 +12,27 @@ $('#layer-list').innerHTML = [...LAYERS].reverse().map(layer => {
   return `<details class="layer"><summary><span class="layer-num">${String(layer.n).padStart(2,'0')}</span><span class="layer-icon" aria-hidden="true">${icons[layer.n - 1]}</span><span class="layer-name">${escapeHTML(name)}${acronym ? `<small>${escapeHTML(acronym.replace(')',''))}</small>` : ''}</span><span class="layer-tag">${escapeHTML(item.tag)}</span><span class="layer-plus" aria-hidden="true">+</span></summary><div class="layer-drawer"><div><h3>${escapeHTML(item.role)}</h3><p>${escapeHTML(item.desc)}</p></div><div class="layer-features">${layer.feats.map(feature => `<div><strong>${escapeHTML(feature.es[0])}</strong><p>${escapeHTML(feature.es[1])}</p></div>`).join('')}</div>${layer.note ? `<div class="layer-note"><strong>${escapeHTML(layer.note.es.title)}.</strong> ${escapeHTML(layer.note.es.body)}</div>` : ''}</div></details>`;
 }).join('');
 
-// Visual summary of the five original PACCC stages.
-const phaseLabels = ['Adaptá FlexClass a tu aula', 'Contenido curricular propio', 'Preguntas antes que respuestas', 'De consumir a producir', 'Cierra el ciclo pedagógico'];
-const productFigure = $('.product-shot');
-productFigure.innerHTML = '<div class="window-bar" aria-hidden="true"><i></i><i></i><i></i><span>El protocolo cognitivo · PACCC™</span></div><div id="lesson-preview" class="lesson-preview"></div><figcaption>Personaliza · Aprende · Conversa · Crea · Comparte</figcaption>';
-phases[0].text = 'Elegí preguntas del reservorio curricular o sumá las tuyas. Definí las herramientas de IA, los tiempos y el recorrido que necesita tu aula.';
-phases[1].text = 'El tema se presenta con una narrativa alineada al currículo de tu jurisdicción. Esa base común permite comprender antes de conversar y crear.';
-phases[2].text = 'FlexGPT acompaña con preguntas centradas en el tema de la clase. El estudiante dialoga, justifica y profundiza a partir de preguntas curadas. La IA abre la conversación.';
-phases[3].text = 'Cada tema propone una consigna y una herramienta de IA, con pasos y tutoriales. El estudiante transforma lo aprendido en una producción propia.';
-phases[4].text = 'El estudiante entrega su trabajo en el espacio del curso. El docente revisa la producción y ofrece una devolución concreta que cierra el ciclo pedagógico.';
-$('.phase-tabs').innerHTML = phases.map((phase, index) => `<button class="phase-tab" id="phase-${index}" role="tab" aria-controls="phase-panel" aria-selected="${index === 0}" tabindex="${index === 0 ? 0 : -1}"><span>${String(index + 1).padStart(2,'0')}</span>${phase.title}</button>`).join('');
+// Original PACCC content and photography from FlexFlix2.
 function selectPhase(index, focus = false) {
   const phase = phases[index];
-  $$('.phase-tab').forEach((tab, i) => { tab.setAttribute('aria-selected', i === index); tab.tabIndex = i === index ? 0 : -1; });
+  $$('#metodologia .phase').forEach((tab, i) => {
+    tab.classList.toggle('active', i === index);
+    tab.setAttribute('aria-selected', i === index);
+    tab.tabIndex = i === index ? 0 : -1;
+  });
   $('#phase-panel').setAttribute('aria-labelledby', `phase-${index}`);
-  $('#phase-number').textContent = `${String(index + 1).padStart(2,'0')} / EL MÉTODO EN ACCIÓN`;
+  $('#phase-kicker').textContent = phase.kicker;
   $('#phase-title').textContent = phase.title;
-  $('#phase-description').textContent = phase.text;
-  $('#lesson-preview').innerHTML = `<span class="lesson-tag">PACCC™ · EL PROTOCOLO COGNITIVO</span><h4>${phase.title}</h4><div class="lesson-rows">${phases.map((item, i) => `<div class="${i === index ? 'current-phase' : ''}"><span>${String(i+1).padStart(2,'0')}</span><p><strong>${item.title}</strong>${phaseLabels[i]}</p></div>`).join('')}</div>`;
-  $('#creation-types').hidden = !phase.crea;
+  $('#phase-text').textContent = phase.text;
+  $('#phase-img').src = phase.img;
+  $('#phase-img').alt = phase.alt;
+  $('#phase-crea').hidden = !phase.crea;
   if (focus) $(`#phase-${index}`).focus();
 }
-$$('.phase-tab').forEach((tab, index) => {
+$$('#metodologia .phase').forEach((tab, index) => {
+  tab.id = `phase-${index}`;
+  tab.setAttribute('role', 'tab');
+  tab.setAttribute('aria-controls', 'phase-panel');
   tab.addEventListener('click', () => selectPhase(index));
   tab.addEventListener('keydown', event => {
     const next = {ArrowRight: (index + 1) % 5, ArrowLeft: (index + 4) % 5, Home: 0, End: 4}[event.key];

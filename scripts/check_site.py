@@ -42,7 +42,7 @@ for ref in page.refs:
     if ref.startswith('#'):
         assert ref[1:] in page.ids, f'Broken anchor: {ref}'
     elif not ref.startswith(('https:', 'mailto:', 'http:', 'data:')):
-        assert (ROOT / ref).is_file(), f'Missing resource: {ref}'
+        assert (ROOT / ref.split("?", 1)[0]).is_file(), f'Missing resource: {ref}'
 media = json.loads((ROOT / 'media.json').read_text(encoding='utf-8'))
 assert isinstance(media['testimonials'], list) and len(media['testimonials']) <= 4
 assert not any(term in (ROOT / 'styles.css').read_text(encoding='utf-8').lower() for term in ('bebas', 'condensed'))
