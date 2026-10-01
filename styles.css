@@ -105,3 +105,22 @@ small{font-size:.875rem}
 .award-logo{flex:0 0 58px}
 @keyframes awards-infinite{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
 @media(max-width:520px){.award{width:270px;flex-basis:270px;padding:22px}}
+
+/* Full original problem comparison, in the FlexFlix3 visual style. */
+.problem-comparison{padding-top:35px;padding-bottom:65px}
+.problem-heading{max-width:850px}
+.problem-heading h2{font-size:clamp(1.5rem,2.5vw,2rem);line-height:1.25}
+.problem-heading>p:last-child{font-size:1rem;margin-top:16px;max-width:740px}
+.problem-comparison-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:30px}
+.problem-comparison-card{min-width:0;overflow:hidden;border:1px solid var(--line);border-radius:14px;background:#ffffff04}
+.problem-comparison-card>img{display:block;width:100%;height:auto}
+.problem-overlay{padding:26px;border-top:3px solid var(--coral)}
+.problem-comparison-card:nth-child(2) .problem-overlay{border-top-color:var(--lavender)}
+.problem-tag{font:700 .875rem/1.5 var(--heading);color:var(--coral);letter-spacing:.06em;text-transform:uppercase}
+.problem-tag.positive{color:var(--lavender)}
+.problem-overlay>p{font-size:1.125rem;font-weight:600;line-height:1.55;color:#f4f4fc;margin-top:12px}
+.problem-consequence{margin-top:24px;padding-top:22px;border-top:1px solid var(--line)}
+.problem-consequence h3{font-size:1.125rem;letter-spacing:-.02em;line-height:1.4}
+.problem-consequence p{font-size:1rem;line-height:1.65;margin-top:10px}
+.problem-consequence .problem-closing{color:var(--lavender);font-weight:600;margin-top:16px}
+@media(max-width:700px){.problem-comparison-grid{grid-template-columns:1fr;gap:20px}.problem-overlay{padding:22px}.problem-comparison{padding-block:30px 45px}}
