@@ -181,6 +181,10 @@ small{font-size:.875rem}
 .model-source-image{display:block;width:100%;height:110px;object-fit:cover;border-radius:8px;margin:18px 0}
 .phase-copy .phase-caption{font-size:1rem;color:var(--lavender);margin-bottom:12px}
 .product-shot figcaption{font-size:.875rem;padding:10px 16px;color:var(--muted)}
+.principle-band{background:linear-gradient(180deg,transparent 0%,#eeebf2 12%,#dedbed 30%,#dedbed 70%,#eeebf2 88%,transparent 100%);padding-block:48px}
+.principle-band .principle-steps span{background:#ffffff60;color:#505269;border-color:#55537a30}
+.principle-band .principle-responsibility span{border-color:#55537a30}
+@media(max-width:700px){.principle-band{padding-block:32px}}
 .audience-source-image{display:block;width:100%;height:110px;object-fit:cover;border-radius:8px;margin-bottom:20px}
 .source-photo{display:block;width:100%;object-fit:cover}
 .province-art.source-photo{height:220px}
