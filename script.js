@@ -133,9 +133,6 @@ const awards = [
 $('#awards-track').innerHTML = awards.map(award => `<div class="award" role="listitem"><div class="award-logo"><img src="${award.src}" alt="" loading="lazy"></div><span class="award-institution">${escapeHTML(award.institution)}</span><h3>${escapeHTML(award.name)}</h3><p>${escapeHTML(award.description)}</p></div>`).join('');
 const awardsRail = $('.marquee');
 const awardsSection = $('#reconocimientos');
-const awardsPause = $('#marquee-toggle');
-let awardsPaused = false;
-let awardsHovered = false;
 let awardsVisible = false;
 function advanceAward(direction) {
   const cards = $$('.award', awardsRail);
@@ -144,27 +141,19 @@ function advanceAward(direction) {
   let target = Math.round(awardsRail.scrollLeft / step) * step + direction * step;
   if (direction > 0 && awardsRail.scrollLeft >= end - 2) target = 0;
   if (direction < 0 && awardsRail.scrollLeft <= 2) target = end;
-  awardsRail.scrollTo({left: Math.max(0, Math.min(end, target)), behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
+  awardsRail.scrollTo({left: Math.max(0, Math.min(end, target)), behavior: 'smooth'});
 }
 $('#awards-prev').addEventListener('click', () => advanceAward(-1));
 $('#awards-next').addEventListener('click', () => advanceAward(1));
-awardsPause.addEventListener('click', () => {
-  awardsPaused = !awardsPaused;
-  awardsPause.setAttribute('aria-pressed', awardsPaused);
-  awardsPause.setAttribute('aria-label', awardsPaused ? 'Reanudar movimiento de reconocimientos' : 'Pausar movimiento de reconocimientos');
-  awardsPause.textContent = awardsPaused ? '\u25b7' : '\u2161';
-});
 awardsRail.addEventListener('keydown', event => {
   if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
     event.preventDefault();
     advanceAward(event.key === 'ArrowRight' ? 1 : -1);
   }
 });
-awardsSection.addEventListener('mouseenter', () => { awardsHovered = true; });
-awardsSection.addEventListener('mouseleave', () => { awardsHovered = false; });
 new IntersectionObserver(entries => { awardsVisible = entries[0].isIntersecting; }, {threshold:.15}).observe(awardsSection);
 setInterval(() => {
-  if (awardsVisible && !awardsPaused && !awardsHovered && !document.hidden && !awardsSection.contains(document.activeElement)) advanceAward(1);
+  if (awardsVisible && !document.hidden) advanceAward(1);
 }, 5000);
 
 const nav = $('#navigation');
@@ -213,7 +202,7 @@ function startContact(profile) {
   if (conversation.open) conversation.close();
   if (caseDialog.open) caseDialog.close();
   form.elements.profile.value = profile;
-  $('.contact-box').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',block:'start'});
+  $('.contact-box').scrollIntoView({behavior:'smooth',block:'start'});
   form.elements.name.focus({preventScroll:true});
 }
 $$('[data-profile]').forEach(button => button.addEventListener('click', () => startContact(button.dataset.profile)));
