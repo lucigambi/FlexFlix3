@@ -221,6 +221,24 @@ body .recognition-label .eyebrow{margin-bottom:0}
 @media(max-width:700px){.global-source-image{grid-column:1;grid-row:auto;height:120px;max-width:320px}.global-local .global-pair{grid-column:1}.principle-source-image{width:100px;height:90px;margin-left:16px}.implementation-source-image{width:110px;height:90px;margin-left:16px}}
 
 /* The same breathing room at every boundary, independent of section type. */
+.idca{grid-template-columns:240px minmax(0,1fr);gap:0;align-items:stretch;padding:0;border:1px solid #8eabdb35;border-radius:18px;overflow:hidden;background:linear-gradient(120deg,#1a2845,#131e37);box-shadow:0 18px 45px #050b191f;margin-top:32px}
+.idca>.idca-identity{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:0;padding:32px;border-right:1px solid #8eabdb2b;background:#c5d8ff06}
+.idca .idca-mark{font-size:2.75rem;line-height:1.15;color:#d3def7}
+.idca small{font-size:.875rem;color:#c0cce3;margin-top:12px}
+.idca .idca-purpose{font-size:1rem;margin-top:24px;color:#aebed9}
+.idca-indicators{display:grid;gap:9px;width:100%;margin-top:28px}
+.idca-indicators span{padding:9px 12px;border:1px solid #b5c9ed24;border-radius:7px;font-size:.875rem;color:#d2def5;background:#c2d6ff06}
+.idca-content{padding:32px 36px}
+.idca h3{font-size:1.5rem;line-height:1.35;max-width:620px}
+.idca-content>p{color:#b6c4de}
+.idca-process{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;list-style:none;padding:0;margin:26px 0;counter-reset:idca-step}
+.idca-process li{display:flex;align-items:center;gap:10px;padding:13px 12px;border:1px solid #a1b8e02b;border-radius:8px;background:#080f242b;font-size:1rem;line-height:1.4;counter-increment:idca-step}
+.idca-process li::before{content:counter(idca-step,decimal-leading-zero);font-size:.875rem;color:#9cb6e2;font-weight:600}
+.idca .idca-conclusion{padding:16px 18px;border-left:3px solid #91aadb;border-radius:0 8px 8px 0;background:#b8cefb0a;color:#e0e8f8;margin-top:0}
+.idca .idca-method{margin-top:24px;border-top:1px solid #a1b8e02b}
+.idca-method summary{padding:17px 0 0;color:#c5d6f3;font-size:.875rem;font-weight:600}
+.idca-method-body{padding:0 0 4px}
+@media(max-width:700px){.idca{grid-template-columns:1fr}.idca>.idca-identity{padding:24px;border-right:0;border-bottom:1px solid #8eabdb2b}.idca .idca-purpose{margin-top:14px}.idca-indicators{display:flex;flex-wrap:wrap;margin-top:18px}.idca-content{padding:24px}.idca h3{font-size:1.375rem}.idca-process{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.idca-process li{flex-direction:column;align-items:flex-start;padding:12px;gap:5px}}
 .section-surface[data-surface]{--surface-fade:280px;padding-block:240px 0}
 .section-surface>:is(.section,.connector){padding-block:40px;margin-block:0}
 .section-surface[data-surface="arquitectura"]{padding-top:0}
