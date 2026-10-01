@@ -295,3 +295,24 @@ body .recognition-label .eyebrow{margin-bottom:0}
   .section-surface[data-surface="arquitectura"]{padding-top:0}
   .section-surface[data-surface="arquitectura"]>.section{padding-top:40px}
 }
+
+/* Responsive audit: keep navigation and long labels within narrow layouts. */
+@media(max-width:1150px){
+  .header .menu-toggle{display:block;flex-shrink:0}
+  .header nav{display:none;position:absolute;top:80px;left:0;right:0;padding:20px;background:#0d152beb;border:1px solid var(--line);border-radius:18px;backdrop-filter:blur(20px)}
+  .header nav.open{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .header nav a{padding:12px;margin:0}
+  .header nav a:last-child{margin:0}
+  .header-tools{margin-left:auto}
+  .idca-process{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(min-width:701px) and (max-width:960px){
+  .government-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .idca{grid-template-columns:1fr}
+  .idca>.idca-identity{border-right:0;border-bottom:1px solid #8eabdb2b}
+  .idca-indicators{display:flex;flex-wrap:wrap}
+  .idca-process{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:700px){.header nav{top:70px}}
+@media(max-width:480px){.implementation-source-image{float:none;margin:0 0 20px;width:140px;height:95px}}
+@media(max-width:360px){.idca-process{grid-template-columns:1fr}}
