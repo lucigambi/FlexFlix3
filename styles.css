@@ -149,3 +149,7 @@ small{font-size:.875rem}
   .problem-comparison-card:nth-child(2) .problem-overlay{border-left:0}
   .problem-consequence{clear:both}
 }
+
+/* Wider, eased transitions between dark and light sections. */
+.light-zone{padding-block:160px;background-color:#f6f4f1;background-image:linear-gradient(to bottom,#080c26 0.000%, #0c1029 8.333%, #181c34 16.667%, #2b2e44 25.000%, #434659 33.333%, #606271 41.667%, #7f808c 50.000%, #9e9ea6 58.333%, #bababe 66.667%, #d3d2d3 75.000%, #e6e4e3 83.333%, #f2f0ee 91.667%, #f6f4f1 100.000%),linear-gradient(to top,#080c26 0.000%, #0c1029 8.333%, #181c34 16.667%, #2b2e44 25.000%, #434659 33.333%, #606271 41.667%, #7f808c 50.000%, #9e9ea6 58.333%, #bababe 66.667%, #d3d2d3 75.000%, #e6e4e3 83.333%, #f2f0ee 91.667%, #f6f4f1 100.000%);background-size:100% 280px;background-position:top,bottom;background-repeat:no-repeat}
+@media(max-width:700px){.light-zone{padding-block:140px;background-size:100% 220px}}
