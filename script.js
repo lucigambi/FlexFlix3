@@ -14,6 +14,7 @@ $('#layer-list').innerHTML = [...LAYERS].reverse().map(layer => {
 
 // FlexFlix3 layout with the original FlexFlix2 content and images.
 $('.phase-tabs').innerHTML = phases.map((phase, index) => `<button class="phase-tab" id="phase-${index}" role="tab" aria-controls="phase-panel" aria-selected="${index === 0}" tabindex="${index === 0 ? 0 : -1}"><span>${String(index + 1).padStart(2,'0')}</span>${phase.title}</button>`).join('');
+const phaseCaptions = ["Adaptá FlexClass a tu aula", "Contenido curricular propio", "Preguntas antes que respuestas", "De consumir a producir", "Cierra el ciclo pedagógico"];
 function selectPhase(index, focus = false) {
   const phase = phases[index];
   $$('.phase-tab').forEach((tab, i) => {
@@ -23,6 +24,7 @@ function selectPhase(index, focus = false) {
   $('#phase-panel').setAttribute('aria-labelledby', `phase-${index}`);
   $('#phase-number').textContent = phase.kicker;
   $('#phase-title').textContent = phase.title;
+  $('#phase-caption').textContent = phaseCaptions[index];
   $('#phase-description').textContent = phase.text;
   $('#phase-img').src = phase.img;
   $('#phase-img').alt = phase.alt;
@@ -38,98 +40,72 @@ $$('.phase-tab').forEach((tab, index) => {
 });
 selectPhase(0);
 
-// Award wording copied from mendoza_aumentada_ai_NEW_NEW/script.js.
+// Original FF2 award copy.
 const awards = [
-    {
-      id: "time",
-      institution: "TIME / STATISTA",
-      name: "Top 100 EdTech Companies",
-      description:
-        "Selección mundial de las 100 mejores empresas de tecnología educativa (2026).",
-      src: "assets/awards/martin-times.png",
-      alt: "TIME - World's Top EdTech Companies",
-      featured: true,
-    },
-    {
-      id: "sadosky",
-      institution: "CESSI",
-      name: "Premio Sadosky",
-      description: "Mejor Innovación Educativa y Scale Up 2025",
-      src: "assets/awards/premios__Sadosky.png",
-      alt: "Premios Sadosky",
-      featured: true,
-    },
-    {
-      id: "youtube",
-      institution: "YOUTUBE",
-      name: "Botones de oro",
-      description: "Entregados por YouTube a los canales Aula365 y Educatina.",
-      src: "assets/awards/premios__youtube.png",
-      alt: "YouTube",
-      featured: true,
-    },
-    {
-      id: "holoniq",
-      institution: "HOLONIQ",
-      name: "Top 200",
-      description: "Selección global de 200 empresas de tecnología educativa.",
-      src: "assets/awards/premios__holon.png",
-      alt: "HolonIQ",
-      featured: true,
-    },
-    {
-      id: "guinness",
-      institution: "GUINNESS WORLD RECORDS",
-      name: "Récord mundial",
-      description:
-        "Al cómic colaborativo con la mayor cantidad de autores del mundo.",
-      src: "assets/awards/premios__Guinness.png",
-      alt: "Guinness World Records",
-      featured: true,
-    },
-    {
-      id: "tato",
-      institution: "CAPIT",
-      name: "Premio Tato",
-      description:
-        "Mejor programa infantil, por la serie Los Creadores (2017).",
-      src: "assets/awards/tato.webp",
-      alt: "Premio Tato",
-      featured: false,
-      logoSize: "small",
-    },
-    {
-      id: "parents",
-      institution: "PARENTS' CHOICE FOUNDATION",
-      name: "Parents' Choice Awards",
-      description:
-        "Sello de calidad otorgado a productos educativos para chicos y familias.",
-      src: "assets/awards/premios__parents.png",
-      alt: "Parents' Choice",
-      featured: false,
-    },
-    {
-      id: "wsa",
-      institution: "WORLD SUMMIT AWARDS",
-      name: "Innovación educativa",
-      description:
-        "Otorgado por la ONU al Programa de Alfabetización Digital (2005).",
-      src: "assets/awards/premios__wsa.png",
-      alt: "World Summit Award",
-      featured: false,
-      logoSize: "large",
-    },
-    {
-      id: "martinfierro",
-      institution: "APTRA",
-      name: "Premio Martín Fierro",
-      description:
-        "Mejor programa infantil por la serie transmedia Los Creadores (2016).",
-      src: "assets/awards/martin-fierro.jpg",
-      alt: "Premio Martín Fierro",
-      featured: false,
-    },
-  ];
+  {
+    "src": "assets/awards/martin-times.png",
+    "alt": "TIME World's Top EdTech Companies",
+    "institution": "TIME / STATISTA",
+    "name": "Top 100 EdTech Companies",
+    "description": "Selección mundial de las 100 mejores empresas de tecnología educativa (2026)."
+  },
+  {
+    "src": "assets/awards/premios__youtube.png",
+    "alt": "YouTube",
+    "institution": "YOUTUBE",
+    "name": "Botones de oro",
+    "description": "Entregados por YouTube a los canales Aula365 y Educatina."
+  },
+  {
+    "src": "assets/awards/premios__holon.png",
+    "alt": "HolonIQ",
+    "institution": "HOLONIQ",
+    "name": "Top 200",
+    "description": "Selección global de 200 empresas de tecnología educativa."
+  },
+  {
+    "src": "assets/awards/premios__Guinness.png",
+    "alt": "Guinness World Records",
+    "institution": "GUINNESS WORLD RECORDS",
+    "name": "Récord mundial",
+    "description": "Al cómic colaborativo con la mayor cantidad de autores del mundo."
+  },
+  {
+    "src": "assets/awards/tato.webp",
+    "alt": "Premio Tato",
+    "institution": "CAPIT",
+    "name": "Premio Tato",
+    "description": "Mejor programa infantil por la serie Los Creadores (2017)."
+  },
+  {
+    "src": "assets/awards/premios__parents.png",
+    "alt": "Parents' Choice",
+    "institution": "PARENTS' CHOICE FOUNDATION",
+    "name": "Parents' Choice Awards",
+    "description": "Sello de calidad otorgado a productos educativos para chicos y familias."
+  },
+  {
+    "src": "assets/awards/premios__Sadosky.png",
+    "alt": "Premios Sadosky",
+    "institution": "CESSI",
+    "name": "Sadosky de Oro",
+    "description": "A la trayectoria empresarial y a la mejor solución de innovación tecnológica aplicada a la educación (2015)."
+  },
+  {
+    "src": "assets/awards/premios__wsa.png",
+    "alt": "World Summit Award",
+    "institution": "WORLD SUMMIT AWARDS",
+    "name": "Innovación educativa",
+    "description": "Otorgado por la ONU al Programa de Alfabetización Digital (2005)."
+  },
+  {
+    "src": "assets/awards/martin-fierro.jpg",
+    "alt": "Premio Martín Fierro",
+    "institution": "APTRA",
+    "name": "Premio Martín Fierro",
+    "description": "Mejor programa infantil por la serie transmedia Los Creadores (2016)."
+  }
+];
 // Equal-width groups include their trailing gap, so the loop joins exactly.
 const awardCards = awards.map(award => `<div class="award" role="listitem"><div class="award-logo"><img src="${award.src}" alt="" loading="eager" decoding="async"></div><span class="award-institution">${escapeHTML(award.institution)}</span><h3>${escapeHTML(award.name)}</h3><p>${escapeHTML(award.description)}</p></div>`).join('');
 $('#awards-track').innerHTML = `<div class="award-group" role="list">${awardCards}</div><div class="award-group" aria-hidden="true">${awardCards}</div>`;

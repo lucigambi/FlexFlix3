@@ -176,3 +176,19 @@ small{font-size:.875rem}
 @media(max-width:700px){.teacher-reference{grid-column:1}.principle-responsibility{grid-template-columns:1fr}.global-pair{flex-wrap:wrap}.global-common{min-width:0}.global-closing{margin-top:0}}
 
 .recognition-intro{max-width:850px;margin-bottom:24px}.recognition-intro h3{font-size:1.25rem;line-height:1.4}.recognition-intro em{font-style:normal}.recognition-intro p{font-size:1rem;margin-top:10px}
+
+/* Original FF2 images in the existing FF3 cards and compact connectors. */
+.model-source-image{display:block;width:100%;height:110px;object-fit:cover;border-radius:8px;margin:18px 0}
+.phase-copy .phase-caption{font-size:1rem;color:var(--lavender);margin-bottom:12px}
+.product-shot figcaption{font-size:.875rem;padding:10px 16px;color:var(--muted)}
+.audience-source-image{display:block;width:100%;height:110px;object-fit:cover;border-radius:8px;margin-bottom:20px}
+.source-photo{display:block;width:100%;object-fit:cover}
+.province-art.source-photo{height:220px}
+.impact-visual.source-photo{height:240px}
+.principle-source-image{float:right;width:160px;height:110px;object-fit:cover;border-radius:12px;margin:0 0 20px 28px}
+.teacher-source-image{width:70px;height:96px;object-fit:cover;border-radius:10px}
+.connector-source-image{display:block;width:100%;max-width:320px;height:125px;object-fit:cover;border-radius:12px;margin-top:20px}
+.global-source-image{display:block;width:100%;height:160px;object-fit:cover;border-radius:12px;grid-column:2;grid-row:1}
+.global-local .global-pair{grid-column:1/-1}
+.implementation-source-image{float:right;width:180px;height:120px;object-fit:cover;border-radius:12px;margin:0 0 20px 24px}
+@media(max-width:700px){.global-source-image{grid-column:1;grid-row:auto;height:120px;max-width:320px}.global-local .global-pair{grid-column:1}.principle-source-image{width:100px;height:90px;margin-left:16px}.implementation-source-image{width:110px;height:90px;margin-left:16px}}
