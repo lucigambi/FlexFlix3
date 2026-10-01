@@ -87,3 +87,14 @@ small{font-size:.875rem}
 }
 
 .product-shot>img{display:block;width:100%;height:auto;object-fit:contain}
+
+/* Original award descriptions, within the existing monochrome recognition rail. */
+.marquee-track{align-items:stretch;animation-duration:100s}
+.marquee:focus-within .marquee-track{animation-play-state:paused}
+.award{width:290px;height:auto;flex:0 0 290px;padding:12px 24px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;gap:10px}
+.award-logo{height:58px;display:flex;align-items:center;justify-content:center}
+.award img,.award:first-child img{max-width:105px;max-height:48px}
+.award-institution{font:700 .875rem/1.5 var(--font);color:var(--lavender);min-height:42px;display:flex;align-items:center;justify-content:center}
+.award h3{font:700 1rem/1.4 var(--heading);letter-spacing:0;min-height:45px;display:flex;align-items:center;justify-content:center}
+.award p{font-size:1rem;line-height:1.55;color:var(--muted)}
+@media(max-width:700px){.award{width:270px;flex-basis:270px;padding-inline:18px}}

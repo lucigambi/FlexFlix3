@@ -38,12 +38,99 @@ $$('.phase-tab').forEach((tab, index) => {
 });
 selectPhase(0);
 
+// Award wording copied from mendoza_aumentada_ai_NEW_NEW/script.js.
 const awards = [
-  ['martin-times.png','TIME / Statista'],['premios__youtube.png','YouTube'],['premios__holon.png','HolonIQ'],
-  ['premios__Guinness.png','Guinness World Records'],['tato.webp','Premio Tato'],['premios__parents.png',"Parents’ Choice"],
-  ['premios__Sadosky.png','Premios Sadosky'],['premios__wsa.png','World Summit Award'],['martin-fierro.jpg','Premio Martín Fierro']
-];
-$('#awards-track').innerHTML = [false,true].map(duplicate => awards.map(([file,name]) => `<div class="award ${duplicate ? 'duplicate' : ''}" ${duplicate ? 'aria-hidden="true"' : ''}><img src="assets/awards/${file}" alt="${duplicate ? '' : escapeHTML(name)}" loading="lazy"></div>`).join('')).join('');
+    {
+      id: "time",
+      institution: "TIME / STATISTA",
+      name: "Top 100 EdTech Companies",
+      description:
+        "Selección mundial de las 100 mejores empresas de tecnología educativa (2026).",
+      src: "assets/awards/martin-times.png",
+      alt: "TIME - World's Top EdTech Companies",
+      featured: true,
+    },
+    {
+      id: "sadosky",
+      institution: "CESSI",
+      name: "Premio Sadosky",
+      description: "Mejor Innovación Educativa y Scale Up 2025",
+      src: "assets/awards/premios__Sadosky.png",
+      alt: "Premios Sadosky",
+      featured: true,
+    },
+    {
+      id: "youtube",
+      institution: "YOUTUBE",
+      name: "Botones de oro",
+      description: "Entregados por YouTube a los canales Aula365 y Educatina.",
+      src: "assets/awards/premios__youtube.png",
+      alt: "YouTube",
+      featured: true,
+    },
+    {
+      id: "holoniq",
+      institution: "HOLONIQ",
+      name: "Top 200",
+      description: "Selección global de 200 empresas de tecnología educativa.",
+      src: "assets/awards/premios__holon.png",
+      alt: "HolonIQ",
+      featured: true,
+    },
+    {
+      id: "guinness",
+      institution: "GUINNESS WORLD RECORDS",
+      name: "Récord mundial",
+      description:
+        "Al cómic colaborativo con la mayor cantidad de autores del mundo.",
+      src: "assets/awards/premios__Guinness.png",
+      alt: "Guinness World Records",
+      featured: true,
+    },
+    {
+      id: "tato",
+      institution: "CAPIT",
+      name: "Premio Tato",
+      description:
+        "Mejor programa infantil, por la serie Los Creadores (2017).",
+      src: "assets/awards/tato.webp",
+      alt: "Premio Tato",
+      featured: false,
+      logoSize: "small",
+    },
+    {
+      id: "parents",
+      institution: "PARENTS' CHOICE FOUNDATION",
+      name: "Parents' Choice Awards",
+      description:
+        "Sello de calidad otorgado a productos educativos para chicos y familias.",
+      src: "assets/awards/premios__parents.png",
+      alt: "Parents' Choice",
+      featured: false,
+    },
+    {
+      id: "wsa",
+      institution: "WORLD SUMMIT AWARDS",
+      name: "Innovación educativa",
+      description:
+        "Otorgado por la ONU al Programa de Alfabetización Digital (2005).",
+      src: "assets/awards/premios__wsa.png",
+      alt: "World Summit Award",
+      featured: false,
+      logoSize: "large",
+    },
+    {
+      id: "martinfierro",
+      institution: "APTRA",
+      name: "Premio Martín Fierro",
+      description:
+        "Mejor programa infantil por la serie transmedia Los Creadores (2016).",
+      src: "assets/awards/martin-fierro.jpg",
+      alt: "Premio Martín Fierro",
+      featured: false,
+    },
+  ];
+$('#awards-track').innerHTML = [false,true].map(duplicate => awards.map(award => `<div class="award ${duplicate ? 'duplicate' : ''}" ${duplicate ? 'aria-hidden="true"' : 'role="listitem"'}><div class="award-logo"><img src="${award.src}" alt="" loading="lazy"></div><span class="award-institution">${escapeHTML(award.institution)}</span><h3>${escapeHTML(award.name)}</h3><p>${escapeHTML(award.description)}</p></div>`).join('')).join('');
 $('#marquee-toggle').addEventListener('click', event => {
   const paused = $('.marquee').classList.toggle('paused');
   event.currentTarget.setAttribute('aria-pressed', paused);
