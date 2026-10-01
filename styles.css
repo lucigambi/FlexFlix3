@@ -221,6 +221,39 @@ body .recognition-label .eyebrow{margin-bottom:0}
 @media(max-width:700px){.global-source-image{grid-column:1;grid-row:auto;height:120px;max-width:320px}.global-local .global-pair{grid-column:1}.principle-source-image{width:100px;height:90px;margin-left:16px}.implementation-source-image{width:110px;height:90px;margin-left:16px}}
 
 /* The same breathing room at every boundary, independent of section type. */
+/* Reference hero: floating navigation, centered copy and video, blue light only. */
+.ambient{display:none}
+.header{width:min(1340px,calc(100% - 48px));height:70px;top:18px;margin:18px auto 0;padding:0 22px;border:1px solid #a9baff20;border-radius:40px;background:#070d22e8;box-shadow:0 12px 45px #0003;gap:24px}
+.header .brand .brand-animation{width:150px;height:38px}
+.header nav{gap:5px;align-items:center}
+.header nav a{padding:9px 12px;border-radius:24px;font-size:.875rem}
+.header nav a.active{background:#b0c4ff10;box-shadow:inset 0 0 0 1px #adc2ff1a}
+.header nav a.active:after{display:none}
+.header nav a:last-child{background:linear-gradient(140deg,#4869de,#3153c5);color:#fff;padding-inline:18px;margin-left:8px;box-shadow:0 3px 15px #456bfa25}
+.header-tools{gap:10px}
+.section-surface[data-surface="arquitectura"]{background-color:#080c26;background-image:linear-gradient(to bottom,#080c26,transparent 120px),radial-gradient(ellipse 65% 440px at 50% 6%,#3d58ab32,transparent 78%),radial-gradient(ellipse 35% 320px at 12% 2%,#667ba722,transparent 80%),radial-gradient(ellipse 35% 320px at 88% 2%,#667ba722,transparent 80%);background-size:auto;background-repeat:no-repeat}
+.hero-grid{display:block;min-height:0;text-align:center;padding-top:35px}
+.hero-copy{max-width:1000px;margin-inline:auto}
+.hero-copy .eyebrow{justify-content:center}
+.hero-copy h1{font-size:clamp(38px,4.5vw,64px);line-height:1.12;letter-spacing:-.05em}
+.hero-copy h1 .gradient{background-image:linear-gradient(100deg,#e5ebff,#a5b7ec)}
+.hero-copy .lead{max-width:660px;margin:25px auto 0;font-size:1.125rem;line-height:1.7;color:#b9c4df}
+.hero-copy .hero-description{max-width:none;margin:12px auto 0}
+.hero-copy .actions{justify-content:center;margin-top:28px}
+.hero-copy .button{border-radius:28px;min-height:46px}
+.hero-copy .primary{background:linear-gradient(135deg,#526fe3,#3455c9);color:white;box-shadow:0 6px 28px #4269e533}
+.hero-copy .text-button{border:1px solid #b5c6ec2e;background:#080d2080}
+.hero-foot{justify-content:center;margin-top:25px;color:#8f9fbe}
+.intro-story{display:flex;flex-direction:column;gap:55px;margin-top:64px;padding-bottom:100px}
+.intro-visual{width:min(100%,980px);height:auto;aspect-ratio:16/9;display:grid;place-items:center;padding:24px;border-radius:18px;background:linear-gradient(150deg,#14213c,#0b132b 65%);border:1px solid #abc1fa2e;box-shadow:0 25px 80px #03061660;overflow:hidden}
+.intro-visual>.coming{position:static;background:transparent;border:0;color:#a7b6d5;font-size:1rem;text-align:center}
+.intro-copy{max-width:800px;text-align:center}
+.intro-copy .eyebrow{justify-content:center}
+.intro-copy p:not(.eyebrow){max-width:720px;margin:18px auto 0}
+.intro-copy .gradient{background-image:linear-gradient(100deg,#dae5ff,#9bafe4)}
+.intro-copy .inline-link{color:#b8cafa}
+@media(max-width:1100px){.header{padding-inline:20px}.header nav{border-radius:18px;top:80px}.header nav a:last-child{margin-left:0}.header .brand .brand-animation{width:140px}}
+@media(max-width:700px){.header{width:calc(100% - 24px);height:60px;top:12px;margin-top:12px;padding-inline:16px}.header nav{top:70px;left:0;right:0}.hero-grid{padding-top:28px}.hero-copy h1{font-size:clamp(34px,9vw,46px)}.hero-copy .lead{font-size:1rem}.hero-copy .actions{gap:10px}.hero-copy .button{padding:12px 17px;gap:12px}.intro-story{margin-top:38px;gap:36px;padding-bottom:65px}.intro-visual{padding:18px;border-radius:12px}.intro-visual>.coming{font-size:.875rem}.intro-copy h2{font-size:1.875rem}}
 .idca{grid-template-columns:240px minmax(0,1fr);gap:0;align-items:stretch;padding:0;border:1px solid #8eabdb35;border-radius:18px;overflow:hidden;background:linear-gradient(120deg,#1a2845,#131e37);box-shadow:0 18px 45px #050b191f;margin-top:32px}
 .idca>.idca-identity{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:0;padding:32px;border-right:1px solid #8eabdb2b;background:#c5d8ff06}
 .idca .idca-mark{font-size:2.75rem;line-height:1.15;color:#d3def7}
