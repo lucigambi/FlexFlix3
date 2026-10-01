@@ -70,3 +70,7 @@ Además, revisar en navegador: menú móvil, las siete capas, pestañas PACCC co
 - Producción: https://flexflix3.vercel.app
 - Vercel: `lucigambis-projects/flexflix3`, rama `main`, framework Other, directorio raíz `.`.
 - `.reference/` es una copia local ignorada; `.vercelignore` evita publicarla.
+
+### Logo original
+
+Animaci?n Lottie recuperada de FlexFlix2, sin modificar sus archivos: `assets/logo/FondoOscuro/` y `assets/logo/FondoBlanco/` (JSON e im?genes). El reproductor original est? en `assets/vendor/lottie.min.js`. `logo.js` reproduce el mismo segmento de fotogramas 0?117 en cabecera y pie; con movimiento reducido muestra un fotograma fijo.
