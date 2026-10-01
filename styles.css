@@ -124,3 +124,28 @@ small{font-size:.875rem}
 .problem-consequence p{font-size:1rem;line-height:1.65;margin-top:10px}
 .problem-consequence .problem-closing{color:var(--lavender);font-weight:600;margin-top:16px}
 @media(max-width:700px){.problem-comparison-grid{grid-template-columns:1fr;gap:20px}.problem-overlay{padding:22px}.problem-comparison{padding-block:30px 45px}}
+
+/* Compact problem comparison: small illustrations beside the full copy. */
+.problem-comparison{padding-top:30px;padding-bottom:40px}
+.problem-comparison-grid{grid-template-columns:1fr;gap:14px;margin-top:24px}
+.problem-comparison-card{display:grid;grid-template-columns:180px minmax(0,1fr);align-items:center;padding:18px;gap:24px}
+.problem-comparison-card>img{width:180px;max-height:160px;object-fit:contain;border-radius:8px}
+.problem-overlay{padding:0 0 0 20px;border-top:0;border-left:3px solid var(--coral)}
+.problem-comparison-card:nth-child(2) .problem-overlay{border-top:0;border-left-color:var(--lavender)}
+.problem-overlay>p{font-size:1rem;margin-top:6px}
+.problem-consequence{margin-top:10px;padding-top:0;border-top:0}
+.problem-consequence h3{font-size:1rem}
+.problem-consequence p{margin-top:4px}
+.problem-consequence .problem-closing{margin-top:8px}
+@media(max-width:700px){
+  .problem-comparison-card{grid-template-columns:110px minmax(0,1fr);gap:16px;padding:16px;align-items:start}
+  .problem-comparison-card>img{width:110px;max-height:110px}
+  .problem-overlay{padding-left:14px}
+}
+@media(max-width:480px){
+  .problem-comparison-card{display:block;padding:18px}
+  .problem-comparison-card>img{float:right;width:76px;height:76px;margin:0 0 10px 12px}
+  .problem-overlay{border-left:0;padding:0}
+  .problem-comparison-card:nth-child(2) .problem-overlay{border-left:0}
+  .problem-consequence{clear:both}
+}
