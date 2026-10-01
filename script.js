@@ -130,8 +130,9 @@ const awards = [
       featured: false,
     },
   ];
-// Two identical sequences make the continuous loop seamless.
-$('#awards-track').innerHTML = [false, true].map(duplicate => awards.map(award => `<div class="award" ${duplicate ? 'aria-hidden="true"' : 'role="listitem"'}><div class="award-logo"><img src="${award.src}" alt="" loading="eager"></div><span class="award-institution">${escapeHTML(award.institution)}</span><h3>${escapeHTML(award.name)}</h3><p>${escapeHTML(award.description)}</p></div>`).join('')).join('');
+// Equal-width groups include their trailing gap, so the loop joins exactly.
+const awardCards = awards.map(award => `<div class="award" role="listitem"><div class="award-logo"><img src="${award.src}" alt="" loading="eager" decoding="async"></div><span class="award-institution">${escapeHTML(award.institution)}</span><h3>${escapeHTML(award.name)}</h3><p>${escapeHTML(award.description)}</p></div>`).join('');
+$('#awards-track').innerHTML = `<div class="award-group" role="list">${awardCards}</div><div class="award-group" aria-hidden="true">${awardCards}</div>`;
 
 const nav = $('#navigation');
 const menu = $('.menu-toggle');

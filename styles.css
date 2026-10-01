@@ -97,9 +97,11 @@ small{font-size:.875rem}
 .award p{font-size:1rem;line-height:1.55;color:var(--muted)}
 @media(max-width:700px){.award{width:270px;flex-basis:270px;padding-inline:18px}}
 
-/* Continuous, seamless movement: two identical nine-card sequences. */
-.marquee{overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 2%,#000 98%,transparent);border-radius:14px}
-.marquee-track{position:relative;width:max-content;gap:16px;align-items:stretch;animation:awards-infinite 72s linear infinite;will-change:transform}
+/* A single composited strip: two identical groups, including the join gap. */
+.marquee{overflow:hidden;mask-image:none;border-radius:14px;contain:paint}
+.marquee-track{position:relative;display:flex;width:max-content;gap:0;align-items:stretch;animation:awards-infinite 72s linear infinite;will-change:transform;backface-visibility:hidden;transform:translate3d(0,0,0)}
+.award-group{display:flex;flex:none;gap:16px;padding-right:16px;align-items:stretch}
 .award{flex:0 0 290px;width:290px;min-width:0;padding:24px 20px;border:1px solid #b4b9ff26;background:linear-gradient(140deg,#ffffff07,#b4b9ff04);border-radius:14px}
-@keyframes awards-infinite{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 8px))}}
+.award-logo{flex:0 0 58px}
+@keyframes awards-infinite{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
 @media(max-width:520px){.award{width:270px;flex-basis:270px;padding:22px}}
