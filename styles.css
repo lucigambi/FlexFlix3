@@ -177,6 +177,29 @@ small{font-size:.875rem}
 
 .recognition-intro{max-width:850px;margin-bottom:24px}.recognition-intro h3{font-size:1.25rem;line-height:1.4}.recognition-intro em{font-style:normal}.recognition-intro p{font-size:1rem;margin-top:10px}
 
+/* A restrained blue palette: each section owns its full-width surface. */
+.light-zone{background:none;padding-block:0}
+.section-surface{--surface-fade:76px;position:relative;display:flow-root;background:linear-gradient(to bottom,var(--previous-surface),var(--surface) var(--surface-fade));padding-top:32px}
+.section-surface.surface-transition{--surface-fade:170px;padding-top:115px}
+.section-surface[data-surface="arquitectura"]{padding-top:0}
+.section-surface>.section{background:transparent}
+.surface-dark{--muted:#b6bed4;--line:#c2c8ec2e;--lavender:#bdc8ed;--eyebrow-color:#bdc8ed;color:#f4f5fc;color-scheme:dark}
+.surface-light{--muted:#555f78;--line:#29395b29;--lavender:#52658c;--eyebrow-color:#52658c;color:#151e38;color-scheme:light}
+.surface-light .gradient{background-image:linear-gradient(110deg,#334b78,#68769f)}
+.surface-light .principle h3>span{color:#52658c}
+.surface-light .principle-steps span{background:#ffffff60;color:#4c5c79;border-color:#52658c30}
+.section-surface[data-surface="principio"]{padding-bottom:24px}
+.section-surface[data-surface="trayectoria"]{padding-bottom:35px}
+.footer{background:#0b142d}
+
+/* One eyebrow treatment, with only its contrast color adapting to the surface. */
+body .eyebrow,body :is(.section-surface,.case-dialog,.conversation) .eyebrow{display:flex;align-items:center;flex-wrap:nowrap;gap:12px;font-family:var(--heading);font-size:.875rem;font-weight:700;line-height:1.5;letter-spacing:.1em;text-transform:uppercase;color:var(--eyebrow-color,#bdc8ed);margin-bottom:18px}
+body .eyebrow::before{width:26px;height:26px;flex:0 0 26px;background-size:contain}
+body .eyebrow>.eyebrow-label{font:inherit;color:inherit;letter-spacing:inherit;flex:0 1 auto;min-width:0}
+body .principle .eyebrow{justify-content:center}
+body .recognition-label .eyebrow{margin-bottom:0}
+@media(max-width:700px){.section-surface{--surface-fade:56px;padding-top:24px}.section-surface.surface-transition{--surface-fade:125px;padding-top:80px}body .eyebrow{gap:12px;font-size:.875rem;letter-spacing:.1em}}
+
 /* Original FF2 images in the existing FF3 cards and compact connectors. */
 .model-source-image{display:block;width:100%;height:110px;object-fit:cover;border-radius:8px;margin:18px 0}
 .phase-copy .phase-caption{font-size:1rem;color:var(--lavender);margin-bottom:12px}
