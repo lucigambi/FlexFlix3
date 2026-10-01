@@ -190,7 +190,7 @@ small{font-size:.875rem}
 .surface-light .principle-steps span{background:#ffffff60;color:#4c5c79;border-color:#52658c30}
 .section-surface[data-surface="principio"]{padding-bottom:24px}
 .section-surface[data-surface="trayectoria"]{padding-bottom:35px}
-.footer{background:#0b142d}
+.footer-surface{background:#0b142d}.footer{background:transparent}
 
 /* One eyebrow treatment, with only its contrast color adapting to the surface. */
 body .eyebrow,body :is(.section-surface,.case-dialog,.conversation) .eyebrow{display:flex;align-items:center;flex-wrap:nowrap;gap:12px;font-family:var(--heading);font-size:.875rem;font-weight:700;line-height:1.5;letter-spacing:.1em;text-transform:uppercase;color:var(--eyebrow-color,#bdc8ed);margin-bottom:18px}
